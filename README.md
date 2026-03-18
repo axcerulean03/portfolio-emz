@@ -1,4 +1,4 @@
-# Laura González — Portfolio
+# Eman Sernal — Portfolio
 ### Laravel 11 + Inertia.js + React 18 + Tailwind CSS
 
 ---
