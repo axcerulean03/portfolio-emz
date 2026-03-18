@@ -7,9 +7,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Playfair Display"', 'serif'],
-        sans:    ['"DM Sans"', 'sans-serif'],
-        mono:    ['"DM Mono"', 'monospace'],
+        display: ['Satoshi', 'sans-serif'],
+        sans:    ['Satoshi', 'sans-serif'],
+        mono:    ['Satoshi', 'sans-serif'],
       },
       colors: {
         dark: {

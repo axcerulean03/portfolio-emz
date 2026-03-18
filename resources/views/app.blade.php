@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     {{-- Inertia SSR title / meta --}}
-    <title inertia>Laura González — Portfolio</title>
+    <title inertia>Axcerulean's Space</title>
 
-    {{-- Google Fonts --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {{-- Satoshi via Fontshare --}}
+    <link rel="preconnect" href="https://api.fontshare.com" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
+        href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap"
         rel="stylesheet"
     />
 

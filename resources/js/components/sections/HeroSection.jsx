@@ -1,14 +1,9 @@
-import { ArrowDown, MapPin } from 'lucide-react'
-import { OWNER, PROJECTS } from '../../data/portfolio'
+import { MapPin, ArrowDown } from 'lucide-react'
+import { OWNER } from '../../data/portfolio'
+import Orb from '../ui/Orb'
 
-// Floating card component used in the hero collage
-function FloatingCard({ children, className = '' }) {
-  return (
-    <div className={`card-glass shadow-2xl ${className}`}>
-      {children}
-    </div>
-  )
-}
+// Replace this with your actual image import or path
+import heroBg from '../../assets/hero-bg.jpg'
 
 export default function HeroSection() {
   const scrollToWork = () => {
@@ -16,110 +11,97 @@ export default function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-      {/* Background gradient blobs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-accent-teal/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent-coral/5 rounded-full blur-3xl" />
+    <section className="relative flex">
+
+      {/* Background image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={heroBg}
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        {/* Darken the image slightly so text stays readable */}
+        <div className="absolute inset-0 bg-black/50" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-16">
-        {/* ── Left: text ── */}
-        <div className="flex flex-col gap-6">
-          {/* Location chip */}
-          <div className="flex items-center gap-2 opacity-0 animate-fade-in animate-delay-100">
-            <MapPin size={12} className="text-accent-teal" />
-            <span className="text-xs font-mono text-white/40 tracking-widest uppercase">
-              {OWNER.location}
-            </span>
+      {/* Content */}
+      <div className="relative z-10 max-w-5xl mx-auto px-8 w-full flex items-center justify-center min-h-screen pointer-events-none">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-24 w-full">
+
+          {/* ── Left: Circle photo + orb behind it ── */}
+          <div className="flex-shrink-0 opacity-0 animate-fade-in animate-delay-100">
+            <div className="relative w-56 h-56 lg:w-72 lg:h-72 flex items-center justify-center">
+
+              {/* Orb glows behind the photo */}
+              <div className="absolute -inset-16 z-0 pointer-events-none">
+                <Orb
+                  hue={0}
+                  hoverIntensity={0.2}
+                  rotateOnHover={true}
+                  forceHoverState={false}
+                />
+              </div>
+
+              {/* Photo circle */}
+              <div className="relative z-10 w-full h-full rounded-full overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80"
+                  alt={OWNER.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+            </div>
           </div>
 
-          {/* Headline */}
-          <h1 className="font-display text-5xl md:text-6xl xl:text-7xl leading-[1.08] opacity-0 animate-fade-up animate-delay-200">
-            Hi, I'm{' '}
-            <span className="text-accent-teal italic">{OWNER.firstName}</span>
-          </h1>
+          {/* ── Right: Text ── */}
+          <div className="flex flex-col gap-5 text-center lg:text-left">
 
-          {/* Sub-title */}
-          <p
-            className="font-mono text-sm tracking-[0.15em] text-white/50 uppercase opacity-0 animate-fade-in animate-delay-300"
-          >
-            {OWNER.title}
-          </p>
+            {/* Location */}
+            <div className="flex items-center justify-center lg:justify-start gap-2 opacity-0 animate-fade-in animate-delay-200">
+              <MapPin size={11} className="text-accent-teal" />
+              <span className="text-xs font-mono text-white/35 tracking-widest uppercase">
+                {OWNER.location}
+              </span>
+            </div>
 
-          {/* Body */}
-          <p className="text-white/60 leading-relaxed max-w-sm opacity-0 animate-fade-up animate-delay-400">
-            {OWNER.subtitle} Welcome to my portfolio.
-          </p>
+            {/* Name */}
+            <h1 className="font-display text-5xl md:text-6xl leading-tight opacity-0 animate-fade-up animate-delay-300">
+              Hi, I'm{' '}
+              <span className="text-accent-teal italic">{OWNER.firstName}</span>
+            </h1>
 
-          {/* CTA */}
-          <div className="flex items-center gap-4 mt-2 opacity-0 animate-fade-up animate-delay-500">
-            <button onClick={scrollToWork} className="btn-outline flex items-center gap-2">
-              Check out my work
-              <ArrowDown size={14} />
-            </button>
-          </div>
-        </div>
-
-        {/* ── Right: floating cards collage ── */}
-        <div className="relative h-[520px] hidden lg:block">
-          {/* Card 1 — top left: small project card */}
-          <FloatingCard className="absolute -top-10 -left-[70px] w-48 p-4 animate-float z-10 ">
-            <img
-              src={PROJECTS[0].image}
-              alt={PROJECTS[0].title}
-              className="w-full h-24 object-cover rounded-xl mb-3"
-            />
-            <span className="tag bg-accent-teal/10 text-accent-teal mb-2 block">
-              {PROJECTS[0].tag}
-            </span>
-            <p className="text-xs text-white/80 font-medium leading-tight">
-              {PROJECTS[0].title}
+            {/* Title */}
+            <p className="font-mono text-xs tracking-[0.2em] text-white/40 uppercase opacity-0 animate-fade-in animate-delay-400">
+              {OWNER.title}
             </p>
-          </FloatingCard>
 
-          {/* Card 2 — center large: landscape image */}
-          <FloatingCard className="absolute top-1/6 left-[130px] w-72 overflow-hidden animate-float-slow">
-            <img
-              src={PROJECTS[1].image}
-              alt={PROJECTS[1].title}
-              className="w-full h-40 object-cover"
-            />
-            <div className="p-4">
-              <p className="text-xs text-white/40 font-mono tracking-widest uppercase mb-1">
-                Images about my passions
-              </p>
-              <h3 className="font-display text-lg text-white">{PROJECTS[1].title}</h3>
-              <p className="text-xs text-white/50 mt-1">{PROJECTS[1].description}</p>
-            </div>
-          </FloatingCard>
+            {/* Bio */}
+            <p className="text-white/55 leading-relaxed max-w-md opacity-0 animate-fade-up animate-delay-500">
+              {OWNER.subtitle}
+            </p>
 
-          {/* Card 3 — bottom right: profile card */}
-          <FloatingCard className="absolute bottom-1/4 -right-[25px] w-48 p-4 flex flex-col items-center gap-3 animate-float-slow">
-            <img
-              src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&q=80"
-              alt={OWNER.name}
-              className="w-16 h-16 rounded-full object-cover ring-2 ring-accent-teal/40"
-            />
-            <div className="text-center">
-              <p className="text-sm font-semibold text-white">{OWNER.name}</p>
-              <p className="text-xs font-mono text-accent-teal/70 tracking-wider mt-0.5">
-                JR. DEVELOPER
-              </p>
-              <p className="text-xs text-white/40 mt-2 leading-relaxed">{OWNER.bio}</p>
+            {/* CTA */}
+            <div className="mt-2 opacity-0 animate-fade-up animate-delay-500 pointer-events-auto">
+              <button
+                onClick={scrollToWork}
+                className="btn-outline inline-flex items-center gap-2 text-sm"
+              >
+                View my work
+                <ArrowDown size={13} />
+              </button>
             </div>
-            <button className="btn-teal text-xs py-2 px-4 w-full text-center">
-              Let's start a project together!
-            </button>
-          </FloatingCard>
+
+          </div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30 pointer-events-none">
         <span className="text-xs font-mono tracking-widest text-white">scroll</span>
-        <div className="w-px h-10 bg-gradient-to-b from-white to-transparent" />
+        <div className="w-px h-8 bg-gradient-to-b from-white to-transparent" />
       </div>
+
     </section>
   )
 }
